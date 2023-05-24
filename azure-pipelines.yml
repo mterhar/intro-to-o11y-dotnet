@@ -12,7 +12,7 @@ variables:
 - name: build_id
   value: $(Build.BuildId)
 - name: build_start
-  value: $(date +"%Y-%m-%d %T")
+  value: $(date +%s)
 pool:
   vmImage: ubuntu-latest
 
