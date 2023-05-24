@@ -31,9 +31,9 @@ steps:
     targetType: 'inline'
     script: |
       # Write your commands here
-      export HONEYCOMB_API_KEY="$(hny_api)"
+      export BUILDEVENT_APIKEY="$(hny_api)"
       export BUILD_ID="$(build_id)"
-      echo "honeycomb api key: $HONEYCOMB_API_KEY"
+      echo "honeycomb api key: $BUILDEVENT_APIKEY"
       echo "build_id: $BUILD_ID"
       buildevents cmd ${BUILD_ID} 1 test-bash -- echo 'Hello world'
 
