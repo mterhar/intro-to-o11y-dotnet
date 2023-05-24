@@ -18,7 +18,7 @@ steps:
       
       curl -L -o buildevents https://github.com/honeycombio/buildevents/releases/latest/download/buildevents-linux-amd64
       chmod 755 buildevents
-      cp -a buildevents /usr/bin/
+      cp -a buildevents /usr/local/bin/
 
 - task: Bash@3
   inputs:
@@ -26,8 +26,9 @@ steps:
     script: |
       # Write your commands here
       
-      buildevents cmd $(Build.ID)-- echo 'Hello world'
+      buildevents cmd ${BUILD_ID} -- echo 'Hello world'
     bashEnvValue: 'HONEYCOMB_API_KEY=PZ36buubRdDSLZjeR4dUgB'
+    bashEnvValue: 'BUILD_ID=$(Build.BuildId)'
 
 - task: UseDotNet@2
   inputs:
