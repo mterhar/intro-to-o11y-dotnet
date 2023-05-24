@@ -18,6 +18,7 @@ pool:
 
 steps:
 - task: Bash@3
+  name: InstallBuildEvents
   inputs:
     targetType: 'inline'
     script: |
@@ -28,21 +29,7 @@ steps:
       cp -a buildevents /usr/local/bin/
 
 - task: Bash@3
-  name: BuildEventsBeforeStep
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      export BUILDEVENT_APIKEY="$(hny_api)"
-      export BUILD_ID="$(build_id)"
-      export STEP_SPAN_ID="$(build_id)ABCD"
-      export STEP_START="$(date +%s)"
-      echo "honeycomb api key: $BUILDEVENT_APIKEY"
-      echo "build_id: $BUILD_ID"
-      buildevents step ${BUILD_ID} ${STEP_SPAN_ID} ${STEP_START} before_script
-
-- task: Bash@3
-  name: BuildEventsCommandStep
+  name: TestBash
   inputs:
     targetType: 'inline'
     script: |
