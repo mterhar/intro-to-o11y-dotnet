@@ -33,9 +33,9 @@ steps:
       # Write your commands here
       export HONEYCOMB_API_KEY="$(hny_api)"
       export BUILD_ID="$(build_id)"
-      echo $HONEYCOMB_API_KEY
-      echo $BUILD_ID
-      buildevents cmd ${BUILD_ID} -- echo 'Hello world'
+      echo "honeycomb api key: $HONEYCOMB_API_KEY"
+      echo "build_id: $BUILD_ID"
+      buildevents cmd ${BUILD_ID} 1 test-bash -- echo 'Hello world'
 
 - task: UseDotNet@2
   inputs:
