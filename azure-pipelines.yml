@@ -6,6 +6,12 @@
 trigger:
 - main
 
+variables:
+- name: hny_api
+  value: PZ36buubRdDSLZjeR4dUgB
+- name: build_id
+  value: $(Build.BuildId)
+
 pool:
   vmImage: ubuntu-latest
 
@@ -25,10 +31,11 @@ steps:
     targetType: 'inline'
     script: |
       # Write your commands here
-      
+      export HONEYCOMB_API_KEY="$(hny_api)"
+      export BUILD_ID="$(build_id)"
+      echo $HONEYCOMB_API_KEY
+      echo $BUILD_ID
       buildevents cmd ${BUILD_ID} -- echo 'Hello world'
-    bashEnvValue: 'HONEYCOMB_API_KEY=PZ36buubRdDSLZjeR4dUgB'
-    bashEnvValue: 'BUILD_ID=$(Build.BuildId)'
 
 - task: UseDotNet@2
   inputs:
