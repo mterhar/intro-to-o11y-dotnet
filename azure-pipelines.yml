@@ -11,7 +11,8 @@ variables:
   value: PZ36buubRdDSLZjeR4dUgB
 - name: build_id
   value: $(Build.BuildId)
-
+- name: build_start
+  value: $(Get-Date -Format yyyyMMddhhmmss)
 pool:
   vmImage: ubuntu-latest
 
@@ -67,3 +68,12 @@ steps:
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'intro-to-o11y-dotnet'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      BUILDEVENT_APIKEY="$(hny_api)"
+      BUILD_ID="$(build_id)"
+      trace_link=$(buildevents build ${BUILD_ID} $(build_start) success)
+      echo "Build Events URL: ${trace_link}"
