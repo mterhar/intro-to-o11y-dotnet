@@ -10,6 +10,25 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      
+      curl -L -o buildevents https://github.com/honeycombio/buildevents/releases/latest/download/buildevents-linux-amd64
+      chmod 755 buildevents
+      cp -a buildevents /usr/bin/
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      
+      buildevents cmd $(Build.ID)-- echo 'Hello world'
+    bashEnvValue: 'HONEYCOMB_API_KEY=PZ36buubRdDSLZjeR4dUgB'
+
 - task: UseDotNet@2
   inputs:
     version: '7.x'
