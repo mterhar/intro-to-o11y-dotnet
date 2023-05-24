@@ -73,9 +73,9 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      BUILDEVENT_APIKEY="$(hny_api)"
-      BUILD_ID="$(build_id)"
-      BUILD_START="$(build_start)"
+      export BUILDEVENT_APIKEY="$(hny_api)"
+      export BUILD_ID="$(build_id)"
+      export BUILD_START="$(build_start)"
       echo "build start time: ${BUILD_START}"
       trace_link=$(buildevents build ${BUILD_ID} ${BUILD_START} success)
       echo "Build Events URL: ${trace_link}"
