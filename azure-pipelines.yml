@@ -42,7 +42,7 @@ steps:
       echo "build_id: $BUILD_ID"
       buildevents cmd ${BUILD_ID} ${STEP_SPAN_ID} test-bash-cmd -- echo 'Hello world'
       buildevents step ${BUILD_ID} ${STEP_SPAN_ID} ${STEP_START} test-bash-step
-      buildevents build ${BUILD_ID} ${BUILD_START} success
+      buildevents build ${BUILD_ID} ${STEP_START} success
 
 # - task: UseDotNet@2
 #   inputs:
