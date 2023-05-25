@@ -42,6 +42,7 @@ steps:
       echo "build_id: $BUILD_ID"
       buildevents cmd ${BUILD_ID} ${STEP_SPAN_ID} test-bash-cmd -- echo 'Hello world'
       buildevents step ${BUILD_ID} ${STEP_SPAN_ID} ${STEP_START} test-bash-step
+      buildevents build ${BUILD_ID} ${BUILD_START} success
 
 # - task: UseDotNet@2
 #   inputs:
@@ -74,13 +75,13 @@ steps:
 #     targetPath: '$(Build.ArtifactStagingDirectory)' 
 #     artifactName: 'intro-to-o11y-dotnet'
 
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      export BUILDEVENT_APIKEY="$(hny_api)"
-      export BUILD_ID="$(build_id)"
-      export BUILD_START="$(build_start)"
-      echo "build start time: ${BUILD_START}"
-      trace_link=$(buildevents build ${BUILD_ID} ${BUILD_START} success)
-      echo "Build Events URL: ${trace_link}"
+# - task: Bash@3
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#       export BUILDEVENT_APIKEY="$(hny_api)"
+#       export BUILD_ID="$(build_id)"
+#       export BUILD_START="$(build_start)"
+#       echo "build start time: ${BUILD_START}"
+#       trace_link=$(buildevents build ${BUILD_ID} ${BUILD_START} success)
+#       echo "Build Events URL: ${trace_link}"
