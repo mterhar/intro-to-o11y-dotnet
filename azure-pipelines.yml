@@ -40,8 +40,8 @@ steps:
       export STEP_START="$(date +%s)"
       echo "honeycomb api key: $BUILDEVENT_APIKEY"
       echo "build_id: $BUILD_ID"
-      buildevents step ${BUILD_ID} ${STEP_SPAN_ID} ${STEP_START} test-bash
-      buildevents cmd ${BUILD_ID} ${STEP_SPAN_ID} test-bash -- echo 'Hello world'
+      buildevents cmd ${BUILD_ID} ${STEP_SPAN_ID} test-bash-cmd -- echo 'Hello world'
+      buildevents step ${BUILD_ID} ${STEP_SPAN_ID} ${STEP_START} test-bash-step
 
 # - task: UseDotNet@2
 #   inputs:
